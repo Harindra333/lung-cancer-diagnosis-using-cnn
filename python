@@ -1,0 +1,61 @@
+# Just needed in case you'd like to append it to an array
+data = []
+ for filename in os.listdir("."):
+    if filename.endswith("jpg"): 
+       # Your code comes here such as 
+        print(filename)
+        data.append(filename)
+#count of images in the directory given
+image_count=len(list(directory.glob('*/*.png')))
+#print(list(directory.glob('/*.jpg')))
+image_count
+Breast_images_dict={
+    "benign":list(directory.glob('benign/*.png')),
+    "malignant":list(directory.glob('malignant/*.png’))}
+#Different species list
+keys=["benign","malignant"]
+#resizing and creating labels using computer vision
+resized,labels=[],[]
+for Breast_name,images in Breast_images_dict.items():
+    for image in images:
+        print("hi")
+        img=cv2.imread(str(image))
+        resized_image=cv2.resize(img,(224,224))
+        resized.append(resized_image)
+        labels.append(keys.index(Breast_name))
+#resizing and creating labels using computer vision
+resized,labels=[],[]
+for Breast_name,images in Breast_images_dict.items():
+    for image in images:
+        print("hi")
+        img=cv2.imread(str(image))
+        resized_image=cv2.resize(img,(224,224))
+        resized.append(resized_image)
+        labels.append(keys.index(Breast_name))
+Breast_images_dict
+#splitting data into train and test
+#if any integer is given to random_state it will generate and give same set of data each time we run the code and if we give 
+#None different sequences will be generated
+
+model=models.Sequential([
+    layers.Conv2D(16,3,padding='same',activation='relu'),
+    layers.MaxPooling2D(),
+    layers.Flatten(),
+    layers.Dense(128,activation="relu"),
+    layers.Dense(64,activation="relu"),
+yers.Dense(2,activation="softmax")])
+model.compile(
+optimizer="adam",loss="sparse_categorical_crossentropy",metrics=["accuracy"])
+myCNN=tf.keras.models.Sequential([
+    layers.BatchNormalization(),
+    layers.Conv2D(32,3,activation="relu"),
+    layers.MaxPooling2D(),
+    layers.Conv2D(64,3,activation="relu"),
+    layers.MaxPooling2D(),
+    layers.Conv2D(128,3,activation="relu"),
+    layers.MaxPooling2D(),
+    layers.Flatten(),
+    layers.Dense(256,activation="relu"),
+    layers.Dense(5,activation="softmax")    
+])
+myCNN.compile(optimizer="adam",loss="sparse_categorical_crossentropy",metrics=["accuracy"])
